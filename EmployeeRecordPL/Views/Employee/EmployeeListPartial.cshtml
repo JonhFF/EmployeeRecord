@@ -1,0 +1,41 @@
+﻿@model IEnumerable<EmployeeRecordDAL.Entities.Employee>
+
+<div class="row">
+    <!-- Display data in a table -->
+    <table>
+        <thead>
+            <tr>
+                <th>Employee Id</th>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Phone</th>
+                <th>Zip</th>
+                <th>Hire Date</th>
+                <th>Option</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                foreach (var data in Model)
+                {
+                    <tr>
+                        <td>@data.EmployeeId</td>
+                        <td>@data.EmployeeLastName</td>
+                        <td>@data.EmployeeFirstName</td>
+                        <td>@data.EmployeePhone</td>
+                        <td>@data.EmployeeZip</td>
+                        <td>@data.HireDate</td>
+                        <td><a class="btn btn-info" href="@Url.Action("EmployeeOption", new { Id = data.EmployeeId })"><span class="glyphicon glyphicon-edit"></span>Editar</a></td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="3">No data available</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

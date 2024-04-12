@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EmployeeRecordModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="uspCreateEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmployeeLastName" Type="varchar" Mode="In" />
+          <Parameter Name="EmployeeFirstName" Type="varchar" Mode="In" />
+          <Parameter Name="EmployeePhone" Type="varchar" Mode="In" />
+          <Parameter Name="EmployeePhoneCode" Type="varchar" Mode="In" />
+          <Parameter Name="EmployeeZip" Type="int" Mode="In" />
+          <Parameter Name="HireDate" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmployeeId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetEmployeeCustomSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmployeeLastName" Type="varchar" Mode="In" />
+          <Parameter Name="EmployeePhone" Type="varchar" Mode="In" />
+          <Parameter Name="Option" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="uspGetEmployeeList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="uspUpdateEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmployeeId" Type="int" Mode="In" />
+          <Parameter Name="EmployeeLastName" Type="varchar" Mode="In" />
+          <Parameter Name="EmployeeFirstName" Type="varchar" Mode="In" />
+          <Parameter Name="EmployeePhone" Type="varchar" Mode="In" />
+          <Parameter Name="EmployeePhoneCode" Type="varchar" Mode="In" />
+          <Parameter Name="EmployeeZip" Type="int" Mode="In" />
+          <Parameter Name="HireDate" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="EmployeeRecordModelStoreContainer" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EmployeeRecordModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="CnnDB" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="uspCreateEmployee" ReturnType="Collection(EmployeeRecordModel.uspCreateEmployee_Result)">
+            <Parameter Name="EmployeeLastName" Mode="In" Type="String" />
+            <Parameter Name="EmployeeFirstName" Mode="In" Type="String" />
+            <Parameter Name="EmployeePhone" Mode="In" Type="String" />
+            <Parameter Name="EmployeePhoneCode" Mode="In" Type="String" />
+            <Parameter Name="EmployeeZip" Mode="In" Type="Int32" />
+            <Parameter Name="HireDate" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetEmployee" ReturnType="Collection(EmployeeRecordModel.uspGetEmployee_Result)">
+            <Parameter Name="EmployeeId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetEmployeeCustomSearch" ReturnType="Collection(EmployeeRecordModel.uspGetEmployeeCustomSearch_Result)">
+            <Parameter Name="EmployeeLastName" Mode="In" Type="String" />
+            <Parameter Name="EmployeePhone" Mode="In" Type="String" />
+            <Parameter Name="Option" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetEmployeeList" ReturnType="Collection(EmployeeRecordModel.uspGetEmployeeList_Result)" />
+          <FunctionImport Name="uspUpdateEmployee" ReturnType="Collection(EmployeeRecordModel.uspUpdateEmployee_Result)">
+            <Parameter Name="EmployeeId" Mode="In" Type="Int32" />
+            <Parameter Name="EmployeeLastName" Mode="In" Type="String" />
+            <Parameter Name="EmployeeFirstName" Mode="In" Type="String" />
+            <Parameter Name="EmployeePhone" Mode="In" Type="String" />
+            <Parameter Name="EmployeePhoneCode" Mode="In" Type="String" />
+            <Parameter Name="EmployeeZip" Mode="In" Type="Int32" />
+            <Parameter Name="HireDate" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="uspCreateEmployee_Result">
+          <Property Type="String" Name="MethodMessage" Nullable="false" MaxLength="1" />
+          <Property Type="Boolean" Name="MethodStatu" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="uspGetEmployee_Result">
+          <Property Type="Int32" Name="EmployeeId" Nullable="false" />
+          <Property Type="String" Name="EmployeeLastName" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="EmployeeFirstName" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="EmployeePhone" Nullable="true" MaxLength="8" />
+          <Property Type="String" Name="EmployeePhoneCode" Nullable="true" MaxLength="4" />
+          <Property Type="Int32" Name="EmployeeZip" Nullable="false" />
+          <Property Type="String" Name="HireDate" Nullable="true" MaxLength="4000" />
+        </ComplexType>
+        <ComplexType Name="uspGetEmployeeCustomSearch_Result">
+          <Property Type="Int32" Name="EmployeeId" Nullable="false" />
+          <Property Type="String" Name="EmployeeLastName" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="EmployeeFirstName" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="EmployeePhone" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="EmployeeZip" Nullable="false" />
+          <Property Type="String" Name="HireDate" Nullable="true" MaxLength="4000" />
+        </ComplexType>
+        <ComplexType Name="uspGetEmployeeList_Result">
+          <Property Type="Int32" Name="EmployeeId" Nullable="false" />
+          <Property Type="String" Name="EmployeeLastName" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="EmployeeFirstName" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="EmployeePhone" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="EmployeeZip" Nullable="false" />
+          <Property Type="String" Name="HireDate" Nullable="true" MaxLength="4000" />
+        </ComplexType>
+        <ComplexType Name="uspUpdateEmployee_Result">
+          <Property Type="String" Name="MethodMessage" Nullable="false" MaxLength="1" />
+          <Property Type="Boolean" Name="MethodStatu" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EmployeeRecordModelStoreContainer" CdmEntityContainer="CnnDB" >
+          <FunctionImportMapping FunctionImportName="uspCreateEmployee" FunctionName="EmployeeRecordModel.Store.uspCreateEmployee">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EmployeeRecordModel.uspCreateEmployee_Result">
+                <ScalarProperty Name="MethodMessage" ColumnName="MethodMessage" />
+                <ScalarProperty Name="MethodStatu" ColumnName="MethodStatu" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspGetEmployee" FunctionName="EmployeeRecordModel.Store.uspGetEmployee">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EmployeeRecordModel.uspGetEmployee_Result">
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="EmployeeLastName" ColumnName="EmployeeLastName" />
+                <ScalarProperty Name="EmployeeFirstName" ColumnName="EmployeeFirstName" />
+                <ScalarProperty Name="EmployeePhone" ColumnName="EmployeePhone" />
+                <ScalarProperty Name="EmployeePhoneCode" ColumnName="EmployeePhoneCode" />
+                <ScalarProperty Name="EmployeeZip" ColumnName="EmployeeZip" />
+                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspGetEmployeeCustomSearch" FunctionName="EmployeeRecordModel.Store.uspGetEmployeeCustomSearch">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EmployeeRecordModel.uspGetEmployeeCustomSearch_Result">
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="EmployeeLastName" ColumnName="EmployeeLastName" />
+                <ScalarProperty Name="EmployeeFirstName" ColumnName="EmployeeFirstName" />
+                <ScalarProperty Name="EmployeePhone" ColumnName="EmployeePhone" />
+                <ScalarProperty Name="EmployeeZip" ColumnName="EmployeeZip" />
+                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspGetEmployeeList" FunctionName="EmployeeRecordModel.Store.uspGetEmployeeList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EmployeeRecordModel.uspGetEmployeeList_Result">
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="EmployeeLastName" ColumnName="EmployeeLastName" />
+                <ScalarProperty Name="EmployeeFirstName" ColumnName="EmployeeFirstName" />
+                <ScalarProperty Name="EmployeePhone" ColumnName="EmployeePhone" />
+                <ScalarProperty Name="EmployeeZip" ColumnName="EmployeeZip" />
+                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspUpdateEmployee" FunctionName="EmployeeRecordModel.Store.uspUpdateEmployee">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EmployeeRecordModel.uspUpdateEmployee_Result">
+                <ScalarProperty Name="MethodMessage" ColumnName="MethodMessage" />
+                <ScalarProperty Name="MethodStatu" ColumnName="MethodStatu" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

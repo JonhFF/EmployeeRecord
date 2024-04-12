@@ -1,0 +1,64 @@
+﻿@model EmployeeRecordDAL.Entities.Employee
+
+<h2>@(Model.EmployeeId > 0 ? "Updating Employee" : "Creating Employee")</h2>
+
+@if (Model.Validate != null)
+{
+    if (!Model.Validate.MethodStatu)
+    {
+        <div class="error-container">
+            <div class="error-content">
+                <h3 class="custom-h1">Oops! Something went wrong</h3>
+                <p class=".custom-p">@Model.Validate.MethodMessage</p>
+            </div>
+        </div>
+    }
+}
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.EmployeeId)
+
+    <div class="form-group">
+        <label>Last Name</label>
+        @Html.TextBoxFor(model => model.EmployeeLastName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.EmployeeLastName)
+    </div>
+
+    <div class="form-group">
+        <label>First Name</label>
+        @Html.TextBoxFor(model => model.EmployeeFirstName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.EmployeeFirstName)
+    </div>
+
+    <div class="form-group">
+        <label>Code</label>
+        @Html.TextBoxFor(model => model.EmployeePhoneCode, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.EmployeePhoneCode)
+    </div>
+
+    <div class="form-group">
+        <label>Phone</label>
+        @Html.TextBoxFor(model => model.EmployeePhone, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.EmployeePhone)
+    </div>
+
+    <div class="form-group">
+        <label>Zip</label>
+        @Html.TextBoxFor(model => model.EmployeeZip, new { @class = "form-control " })
+        @Html.ValidationMessageFor(model => model.EmployeeZip)
+    </div>
+
+    <div class="form-group">
+        <label>Hire Date</label>
+
+        @Html.TextBoxFor(model => model.HireDate, new { @class = "form-control", type = "date" })
+        @Html.ValidationMessageFor(model => model.HireDate)
+    </div>
+
+    <div class="form-group col-md-2">
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+
+}
